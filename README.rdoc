@@ -2,8 +2,18 @@
 
 Plugin automatically sets due date of the issue based on the due date field of the target version
 
-== Update Issue
+== Usage
+
+=== Create Issue
+It will automatically sets due date field based on target version date
+
+=== Update Issue
 If target version changes and issue's due date field is still equals to old version date, then due date automatically set to new version date.
+
+== Installation and Setup
+
+1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
+2. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
 
 = Requrements
 * Redmine 1.2.1 or later (may work on earlier verisons, but not tested for it)

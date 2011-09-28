@@ -8,7 +8,7 @@ Dispatcher.to_prepare :redmine_due_date_by_default do
 end
 
 Redmine::Plugin.register :redmine_due_date_by_default do
-  name 'Redmine Due Date By Default plugin'
+  name 'Redmine Due Date By Default'
   author 'Max Prokopiev'
   description 'Automatically sets due date of the issue based on the date of the target version'
   version '0.0.1'
