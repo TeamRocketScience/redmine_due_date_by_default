@@ -8,6 +8,7 @@ module RedmineDueDateByDefault
           unloadable
           alias_method_chain :update, :write_due_date
           alias_method_chain :create, :write_due_date
+          alias_method_chain :new, :write_fixed_version
         end
       end
 
@@ -35,13 +36,23 @@ module RedmineDueDateByDefault
           update_without_write_due_date              
         end
 
+        def new_with_write_fixed_version
+          project = Project.find(params[:project_id]) 
+          field = project.custom_field_values.find {|field| field.custom_field_id == 21}
+          params[:issue] = {} if params[:issue].nil?
+          params[:issue][:fixed_version_id] = field.value
+          build_new_issue_from_params
+          new_without_write_fixed_version
+        end
+
         def create_with_write_due_date
-          if params[:issue][:due_date].nil?
+          if params[:issue][:due_date].nil? || (params[:issue][:due_date] == '')
             unless params[:issue][:fixed_version_id].nil?
               v = Version.find(params[:issue][:fixed_version_id])
               params[:issue][:due_date] = v.due_date unless v.due_date.nil?
             end
           end
+          build_new_issue_from_params
           create_without_write_due_date
         end
 
