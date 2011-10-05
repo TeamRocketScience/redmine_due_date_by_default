@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_due_date_by_default do
   name 'Redmine Due Date By Default'
   author 'Max Prokopiev'
   description 'Automatically sets due date of the issue based on the date of the target version'
-  version '0.0.1'
+  version '0.0.2'
   url 'http://trs.io/'
   author_url 'http://github.com/juggler'
 end

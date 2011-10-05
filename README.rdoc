@@ -1,6 +1,6 @@
 = Due date by default plugin for redmine
 
-Plugin automatically sets due date of the issue based on the due date field of the target version
+Plugin automatically sets due date of the issue based on the due date field of the target version. Also, it sets target version based on project custom field.
 
 == Usage
 
@@ -13,10 +13,20 @@ If target version changes and issue's due date field is still equals to old vers
 == Installation and Setup
 
 1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
-2. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
+2. run rake task:
+  rake redmine:due_date_by_default:create_custom_field  
+
+This will create project custom field with name "Current version" and format "Version"
+
+3. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
+4. Set up this custom field in your project settings
 
 = Requrements
 * Redmine 1.2.1 or later (may work on earlier verisons, but not tested for it)
+
+= Changelog
+* v0.0.1 - Release
+* v0.0.2 - Added rake task and autoset of target version field
 
 = Author
 Max Prokopiev
