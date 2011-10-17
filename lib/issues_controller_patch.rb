@@ -39,9 +39,11 @@ module RedmineDueDateByDefault
         def new_with_write_fixed_version
           project = Project.find(params[:project_id]) 
           field = project.custom_field_values.find {|field| field.custom_field_id == 21}
-          params[:issue] = {} if params[:issue].nil?
-          params[:issue][:fixed_version_id] = field.value
-          build_new_issue_from_params
+          if !field.nil?
+            params[:issue] = {} if params[:issue].nil?
+            params[:issue][:fixed_version_id] = field.value
+            build_new_issue_from_params
+          end
           new_without_write_fixed_version
         end
 
