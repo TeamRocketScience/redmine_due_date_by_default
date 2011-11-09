@@ -50,8 +50,11 @@ module RedmineDueDateByDefault
         def create_with_write_due_date
           if params[:issue][:due_date].nil? || (params[:issue][:due_date] == '')
             unless params[:issue][:fixed_version_id].nil?
-              v = Version.find(params[:issue][:fixed_version_id])
-              params[:issue][:due_date] = v.due_date unless v.due_date.nil?
+              begin
+                v = Version.find(params[:issue][:fixed_version_id])
+              rescue
+              end
+              params[:issue][:due_date] = v.due_date unless (v.nil? || v.due_date.nil?)
             end
           end
           build_new_issue_from_params
